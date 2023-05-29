@@ -37,11 +37,37 @@ module.exports = (sequelize, DataTypes) => {
           },
         },
       },
+      product_id: {
+        allowNull: false,
+        type: DataTypes.UUID,
+        references: {
+          model: "Product",
+          key: "id",
+        },
+        validate: {
+          notNull: {
+            msg: "product id cannot be empty",
+          },
+        },
+      },
+      transaction_id: {
+        allowNull: false,
+        type: DataTypes.UUID,
+        references: {
+          model: "Transaction",
+          key: "id",
+        },
+        validate: {
+          notNull: {
+            msg: "transaction id cannot be empty",
+          },
+        },
+      },
     },
     {
       sequelize,
       modelName: "TransactionItem",
-      tableName: "transaction_item",
+      tableName: "transaction_items",
       underscored: true,
       paranoid: true,
     }

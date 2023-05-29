@@ -78,6 +78,19 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         type: DataTypes.STRING,
       },
+      brand_id: {
+        type: DataTypes.UUID,
+        allowNull: false,
+        references: {
+          model: "Brand",
+          key: "id",
+        },
+        validate: {
+          notNull: {
+            msg: "brand id cannot be empty",
+          },
+        },
+      },
     },
 
     {

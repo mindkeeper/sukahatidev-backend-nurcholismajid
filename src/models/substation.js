@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate({ Brand, Transaction, City }) {
       this.belongsTo(Brand, { foreignKey: "brand_id" });
       this.hasMany(Transaction, { foreignKey: "substation_id" });
-      this.belongsTo(City)
+      this.belongsTo(City, { foreignKey: "city_id" });
     }
   }
   Substations.init(
@@ -58,13 +58,39 @@ module.exports = (sequelize, DataTypes) => {
           },
         },
       },
+      city_id: {
+        allowNull: false,
+        type: DataTypes.UUID,
+        references: {
+          model: "City",
+          key: "id",
+        },
+        validate: {
+          notNull: {
+            msg: "City id cannot be empty",
+          },
+        },
+      },
+      brand_id: {
+        type: DataTypes.UUID,
+        allowNull: false,
+        references: {
+          model: "Brand",
+          key: "id",
+        },
+        validate: {
+          notNull: {
+            msg: "brand id cannot be empty",
+          },
+        },
+      },
     },
     {
       sequelize,
       modelName: "Substation",
       tableName: "substations",
       underscored: true,
-      paranoid:true,
+      paranoid: true,
     }
   );
   return Substations;
