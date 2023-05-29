@@ -14,14 +14,26 @@ module.exports = (sequelize, DataTypes) => {
   }
   City.init(
     {
-      name: DataTypes.STRING,
+      name: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          len: {
+            args: [4, 30],
+            msg: "city name must be 4-30 characters long",
+          },
+          notNull: {
+            args: "city name is required",
+          },
+        },
+      },
     },
     {
       sequelize,
       modelName: "City",
       tableName: "cities",
       underscored: true,
-      paranoid:true,
+      paranoid: true,
     }
   );
   return City;
