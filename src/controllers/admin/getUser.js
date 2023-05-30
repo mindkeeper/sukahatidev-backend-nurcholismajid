@@ -55,7 +55,10 @@ const getUserHandler = async (req, res) => {
       })
     );
     await t.commit();
-    return res.sendSuccess(200, averageQuantities);
+    return res.sendSuccess(200, {
+      brandName: brand.name,
+      products: [...averageQuantities],
+    });
   } catch (error) {
     console.log(error);
     await t.rollback();
