@@ -7,7 +7,7 @@ const loginHandler = async (req, res) => {
   const t = await sequelize.transaction();
   try {
     const { email, username, password } = req.body;
-    if (!email && !password)
+    if (!email && !username)
       return res.sendClientError(400, "email/username is required");
 
     //searching user by email/username
