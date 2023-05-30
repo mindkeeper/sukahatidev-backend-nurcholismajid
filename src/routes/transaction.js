@@ -1,8 +1,7 @@
-const createTransactionHandler = require("../controllers/createTransactions");
-const loginHandler = require("../controllers/login");
-const registerHandler = require("../controllers/register");
+const createTransactionHandler = require("../controllers/transaction/createTransaction");
+const isLogin = require("../middlewares/authorization");
 
 const Route = require("express").Router();
 
-// Route.post("/new", createTransactionHandler);
+Route.post("/new", isLogin, createTransactionHandler);
 module.exports = Route;
