@@ -1,9 +1,9 @@
+const getBrandHandler = require("../controllers/admin/getBrand");
 const getTransactionHandler = require("../controllers/admin/getTransaction");
-const getUserHandler = require("../controllers/admin/getUser");
 
 const Route = require("express").Router();
 
-Route.get("/user/:id", getUserHandler);
-Route.get("/transaction/:id", getTransactionHandler);
+Route.get("/brands/:id", getBrandHandler);
+Route.get("/transactions/:id", getTransactionHandler);
 
 module.exports = Route;

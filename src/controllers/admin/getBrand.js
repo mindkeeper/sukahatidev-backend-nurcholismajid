@@ -8,7 +8,7 @@ const {
   Product,
 } = require("../../models");
 
-const getUserHandler = async (req, res) => {
+const getBrandHandler = async (req, res) => {
   const t = await sequelize.transaction();
 
   try {
@@ -17,6 +17,7 @@ const getUserHandler = async (req, res) => {
       include: [{ model: Substation }],
       transaction: t,
     });
+    if (!brand) return res.sendClientError(404, "User/brand not found");
     const transactions = await TransactionItem.findAll({
       include: [
         {
@@ -66,4 +67,4 @@ const getUserHandler = async (req, res) => {
   }
 };
 
-module.exports = getUserHandler;
+module.exports = getBrandHandler;

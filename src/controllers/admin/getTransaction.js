@@ -20,6 +20,7 @@ const getTransactionHandler = async (req, res) => {
       ],
       transaction: t,
     });
+    if (!transaction) return res.sendClientError(404, "Transaction not found");
     const modifiedResponse = {
       id: transaction.id,
       brandName: transaction.Substation.name,
