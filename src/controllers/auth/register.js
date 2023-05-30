@@ -24,7 +24,7 @@ const registerHandler = async (req, res) => {
       transaction: t,
     });
     await t.commit();
-    return res.sendSuccess(200, { message: "Register Success" });
+    return res.sendSuccess(201, { message: "Register Success" });
   } catch (error) {
     console.log(error);
     // Check if the error is a Sequelize validation error
